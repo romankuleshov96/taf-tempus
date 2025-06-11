@@ -7,23 +7,23 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class LoginPageController {
+public class LoginFormController {
 
     private String BASE_URL = "https://tempus.by";
     private String LOGIN_URL = BASE_URL + "/bitrix/services/main/ajax.php";
 
     private Response response;
 
-    public LoginPageController(String email, String password) {
+    public LoginFormController(String email, String password) {
         response = getPostResponseLogin(email, password);
     }
 
 //    public LoginPageController(String email) {
-//        response = getPostResponseLogin(email);
+//        response = getPostResponseLoginEmailOnly(email);
 //    }
 //
 //    public LoginPageController(String password) {
-//        response = getPostResponseLogin(password);
+//        response = getPostResponseLoginPasswordOnly(password);
 //    }
 
 
@@ -33,17 +33,17 @@ public class LoginPageController {
         return response;
     }
 
-//    private Response getPostResponseLogin(String email) {
-//        Response response = getPostResponseLogin(LOGIN_URL, getQueryParams(), getFormParams(email));
-//
-//        return response;
-//    }
-//
-//    private Response getPostResponseLogin(String password) {
-//        Response response = getPostResponseLogin(LOGIN_URL, getQueryParams(), getFormParams(password));
-//
-//        return response;
-//    }
+    private Response getPostResponseLoginEmailOnly(String email) {
+        Response response = getPostResponseLogin(LOGIN_URL, getQueryParams(), getFormParamsByEmail(email));
+
+        return response;
+    }
+
+    private Response getPostResponseLoginPasswordOnly(String password) {
+        Response response = getPostResponseLogin(LOGIN_URL, getQueryParams(), getFormParamsByPassword(password));
+
+        return response;
+    }
 
     private Response getPostResponseLogin(String endpoint, Map<String, String> queryParams, Map<String, String> formParams) {
         Response response = given()
@@ -77,18 +77,18 @@ public class LoginPageController {
         return formParams;
     }
 
-//    private static Map<String, String> getFormParams(String password) {
-//        Map<String, String> formParams = new HashMap<>();
-//        formParams.put("password", password);
-//
-//        return formParams;
-//    }
-//
-//
-//    private static Map<String, String> getFormParams(String email) {
-//        Map<String, String> formParams = new HashMap<>();
-//        formParams.put("email", email);
-//
-//        return formParams;
-//    }
+    private static Map<String, String> getFormParamsByPassword(String password) {
+        Map<String, String> formParams = new HashMap<>();
+        formParams.put("password", password);
+
+        return formParams;
+    }
+
+
+    private static Map<String, String> getFormParamsByEmail(String email) {
+        Map<String, String> formParams = new HashMap<>();
+        formParams.put("email", email);
+
+        return formParams;
+    }
 }
