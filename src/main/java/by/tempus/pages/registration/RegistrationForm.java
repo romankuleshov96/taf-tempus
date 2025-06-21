@@ -1,15 +1,12 @@
 package by.tempus.pages.registration;
 
 import by.tempus.driver.Driver;
-import by.tempus.pages.login.LoginForm;
+import by.tempus.pages.BaseForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class RegistrationForm {
-
-    private final By loginTitle = By.xpath("(//button[@class=\"tabs__btn-action\"])[1]");
-    private final By registrationTitle = By.xpath("(//button[@class=\"tabs__btn-action\"])[2]");
+public class RegistrationForm extends BaseForm {
 
     private final By nameField = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//input[@name=\"fullName\"]");
     private final By nameFieldPlaceholder = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required\"]//span[@class=\"form-input__placeholder\"]");
@@ -32,7 +29,7 @@ public class RegistrationForm {
     private final By repeatPasswordFieldValidationMessage = By.xpath("//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]");
 
     private final By agreementCheckBox = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"form-input is-checkbox is-required checkbox-input\"]");
-    private final By agreementCheckBoxValidationMessage = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"form-input is-checkbox is-required checkbox-input\"]//span[@class=\"form-input__error-message\"]");
+    private final By agreementCheckBoxValidationMessage = By.xpath("//span[@class=\"form-input is-checkbox is-required checkbox-input is-error\"]//span[@class=\"form-input__error-message\"]");
     private final By agreementText = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]");
 
     private final By submitRegistrationButton = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//button[@type=\"submit\"]");
@@ -50,14 +47,6 @@ public class RegistrationForm {
     }
 
     //get text
-    public String getTextLoginTitle() {
-        return driver.findElement(loginTitle).getText();
-    }
-
-    public String getTextRegistrationTitle() {
-        return driver.findElement(registrationTitle).getText();
-    }
-
     public String getTextNameFieldPlaceholder() {
         return driver.findElement(nameFieldPlaceholder).getText();
     }
@@ -123,12 +112,6 @@ public class RegistrationForm {
         driver.findElement(submitRegistrationButton).click();
     }
 
-    public LoginForm clickLoginTitle() {
-        driver.findElement(loginTitle).click();
-
-        return new LoginForm();
-    }
-
     //sendKeys
     public void sendKeysNameField(String nameValue) {
         driver.findElement(nameField).sendKeys(nameValue);
@@ -152,17 +135,18 @@ public class RegistrationForm {
 
     //isLoginFormDisplayed
     public boolean isRegistrationFormDisplayed() {
+
         return (
                 driver.findElement(registrationTitle).isDisplayed() &&
                 driver.findElement(nameField).isDisplayed() &&
-                        driver.findElement(emailField).isDisplayed() &&
-                        driver.findElement(phoneField).isDisplayed() &&
-                        driver.findElement(passwordField).isDisplayed() &&
-                        driver.findElement(repeatPasswordField).isDisplayed() &&
-                        driver.findElement(repeatPasswordField).isDisplayed() &&
-                        driver.findElement(agreementCheckBox).isDisplayed() &&
-                        driver.findElement(agreementText).isDisplayed() &&
-                        driver.findElement(submitRegistrationButton).isDisplayed()
+                driver.findElement(emailField).isDisplayed() &&
+                driver.findElement(phoneField).isDisplayed() &&
+                driver.findElement(passwordField).isDisplayed() &&
+                driver.findElement(repeatPasswordField).isDisplayed() &&
+                driver.findElement(repeatPasswordField).isDisplayed() &&
+                driver.findElement(agreementCheckBox).isDisplayed() &&
+                driver.findElement(agreementText).isDisplayed() &&
+                driver.findElement(submitRegistrationButton).isDisplayed()
         );
     }
 }

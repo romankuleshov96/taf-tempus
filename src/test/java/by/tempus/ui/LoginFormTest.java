@@ -5,6 +5,7 @@ import by.tempus.pages.login.LoginForm;
 import by.tempus.pages.login.LoginFormLocalizations;
 import by.tempus.pages.registration.RegistrationForm;
 import by.tempus.pages.reset.password.ResetPasswordForm;
+import by.tempus.utils.CredentialGenerators;
 import by.tempus.utils.Waits;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,14 +15,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginFormTest extends BaseTest{
 
+    private String email;
+    private String invalidEmail;
+    private String password;
+
     public Header header;
     public LoginForm loginForm;
 
     @BeforeEach
     public void setup() {
+        email = CredentialGenerators.getValidEmail();
+        invalidEmail = CredentialGenerators.getInvalidEmailWithoutDomenZonePart();
+        password = CredentialGenerators.getValidPassword();
+
         header = new Header();
         header.clickAccountButton();
         loginForm = new LoginForm();
+
         Waits.waitUntilElementIsDisplayed(loginForm.getLoginTitle());
     }
 
@@ -50,7 +60,7 @@ public class LoginFormTest extends BaseTest{
     @Test
     @DisplayName("Verify validation message for empty 'Email' field")
     public void testEmptyEmailFieldValidationText() {
-        loginForm.sendKeysPasswordField("Qwerty123!");
+        loginForm.sendKeysPasswordField(password);
         loginForm.clickSubmitButton();
 
         assertEquals(LoginFormLocalizations.EMAIL_FIELD_VALIDATION_MESSAGE, loginForm.getTextEmailFieldValidationMessage());
@@ -59,7 +69,7 @@ public class LoginFormTest extends BaseTest{
     @Test
     @DisplayName("Verify validation message for empty 'Password' field")
     public void testEmptyPasswordFieldValidationText() {
-        loginForm.sendKeysEmailField("abc@aa.bb");
+        loginForm.sendKeysEmailField(email);
         loginForm.clickSubmitButton();
 
         assertEquals(LoginFormLocalizations.PASSWORD_FIELD_VALIDATION_MESSAGE, loginForm.getTextPasswordFieldValidationMessage());
@@ -68,8 +78,8 @@ public class LoginFormTest extends BaseTest{
     @Test
     @DisplayName("Verify validation message for invalid email format value")
     public void testInvalidEmailFormatValueValidationText() {
-        loginForm.sendKeysEmailField("abc@aa");
-        loginForm.sendKeysPasswordField("qqqqq");
+        loginForm.sendKeysEmailField(invalidEmail);
+        loginForm.sendKeysPasswordField(password);
         loginForm.clickSubmitButton();
 
         assertEquals(LoginFormLocalizations.INVALID_EMAIL_VALIDATION_MESSAGE, loginForm.getTextEmailFieldValidationMessage());
@@ -78,8 +88,8 @@ public class LoginFormTest extends BaseTest{
     @Test
     @DisplayName("Verify validation message for not existed user value")
     public void testNotExistedUserValueValidationText() {
-        loginForm.sendKeysEmailField("abc@aa.aa");
-        loginForm.sendKeysPasswordField("qqqqq");
+        loginForm.sendKeysEmailField(email);
+        loginForm.sendKeysPasswordField(password);
         loginForm.clickSubmitButton();
 
         Waits.waitUntilElementIsDisplayed(loginForm.getErrorPopup());
@@ -92,7 +102,7 @@ public class LoginFormTest extends BaseTest{
     public void testResetPasswordFormRedirection() {
         ResetPasswordForm resetPasswordForm = loginForm.clickReetPasswordButton();
 
-        //title is displayed
+        assertTrue(resetPasswordForm.isResetPasswordFormDisplayed());
     }
 
     @Test
