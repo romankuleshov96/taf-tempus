@@ -1,16 +1,13 @@
 package by.tempus.pages.login;
 
 import by.tempus.driver.Driver;
-import by.tempus.pages.registration.RegistrationForm;
+import by.tempus.pages.BaseForm;
 import by.tempus.pages.reset.password.ResetPasswordForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginForm {
-
-    private final By loginTitle = By.xpath("(//button[@class=\"tabs__btn-action\"])[1]");
-    private final By registrationTitle = By.xpath("(//button[@class=\"tabs__btn-action\"])[2]");
+public class LoginForm extends BaseForm {
 
     private final By emailField = By.xpath("//label[@class=\"form-input is-required is-email check-email\"]");
     private final By emailFieldPlaceholder = By.xpath("//label[@class=\"form-input is-required is-email check-email\"]//span[@class=\"form-input__placeholder\"]");
@@ -30,23 +27,11 @@ public class LoginForm {
         driver = Driver.getDriver();
     }
 
-    public WebElement getLoginTitle() {
-        return driver.findElement(loginTitle);
-    }
-
     public WebElement getErrorPopup() {
         return driver.findElement(errorPopup);
     }
 
     //get text
-    public String getTextLoginTitle() {
-        return driver.findElement(loginTitle).getText();
-    }
-
-    public String getTextRegistrationTitle() {
-        return driver.findElement(registrationTitle).getText();
-    }
-
     public String getTextEmailFieldPlaceholder() {
         return driver.findElement(emailFieldPlaceholder).getText();
     }
@@ -84,12 +69,6 @@ public class LoginForm {
         driver.findElement(resetPasswordButton).click();
 
         return new ResetPasswordForm();
-    }
-
-    public RegistrationForm clickRegistrationTitle() {
-        driver.findElement(registrationTitle).click();
-
-        return new RegistrationForm();
     }
 
     //sendKeys

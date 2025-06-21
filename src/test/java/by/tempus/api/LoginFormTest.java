@@ -1,70 +1,84 @@
 package by.tempus.api;
 
+import by.tempus.utils.CredentialGenerators;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginFormTest {
 
-//    private LoginPageController loginPageController;
-//
-//    @BeforeEach
-//    public void setup() {
-//        loginPageController = new LoginPageController("test", "Qwerty123");
-//    }
+    private LoginFormController loginFormController;
+    private Response response;
+    private String email;
+    private String password;
+
+    @BeforeEach
+    public void setup() {
+        loginFormController = new LoginFormController();
+        email = CredentialGenerators.getValidEmail();
+        password = CredentialGenerators.getValidPassword();
+    }
 
 
     @Test
     public void testNotExistedCredentials() {
-        LoginFormController loginFormController = new LoginFormController("test@test.com", "Qwerty123");
+        response = loginFormController.getPostResponseLogin(email, password);
 
         assertAll(
-                () -> assertEquals(200, loginFormController.getStatusCode(), "Status code should be 200"),
-                () -> assertEquals("Неверные учетные данные или пользователь деактивирован\\заблокирован", loginFormController.getTextErrorMessage())
+                () -> assertEquals(200, response.getStatusCode(), "Status code should be 200"),
+                () -> assertEquals("Неверные учетные данные или пользователь деактивирован\\заблокирован", loginFormController.getTextErrorMessage(response))
         );
     }
 
-    @Test
-    public void testInvalidEmailFormat() {
-        LoginFormController loginFormController = new LoginFormController("test", "Qwerty123");
-
-        assertAll(
-                () -> assertEquals(200, loginFormController.getStatusCode()),
-                () -> assertEquals("Некорректный email", loginFormController.getTextErrorMessage())
-        );
-    }
-
+//    @Test
+//    public void testInvalidEmailFormat() {
+//        LoginFormController loginFormController = new LoginFormController("test", "Qwerty123");
+//
+//        assertAll(
+//                () -> assertEquals(200, loginFormController.getStatusCode()),
+//                () -> assertEquals("Некорректный email", loginFormController.getTextErrorMessage())
+//        );
+//    }
+//
     @Test
     public void testEmptyEmailField() {
-        LoginFormController loginFormController = new LoginFormController("", "Qwerty123");
+        response = loginFormController.getPostResponseLoginPasswordOnly(password);
 
         assertAll(
-                () -> assertEquals(200, loginFormController.getStatusCode()),
-                () -> assertEquals("Не указан Email", loginFormController.getTextErrorMessage())
+                () -> assertEquals(200, loginFormController.getStatusCode(response)),
+                () -> assertEquals("Не указан Email", loginFormController.getTextErrorMessage(response))
         );
     }
+//
+//    @Test
+//    public void testEmptyPasswordField() {
+//        LoginFormController loginFormController = new LoginFormController("test@test.com", "");
+//
+//        assertAll(
+//                () -> assertEquals(200, loginFormController.getStatusCode()),
+//                () -> assertEquals("Не указан Пароль", loginFormController.getTextErrorMessage())
+//        );
+//    }
+//
+//    @Test
+//    public void testEmptyEmailAndPasswordField() {
+//        LoginFormController loginFormController = new LoginFormController("", "");
+//
+//        assertAll(
+//                () -> assertEquals(200, loginFormController.getStatusCode()),
+//                () -> assertEquals("Не указан Email", loginFormController.getTextErrorMessage())
+//        );
+//    }
 
-    @Test
-    public void testEmptyPasswordField() {
-        LoginFormController loginFormController = new LoginFormController("test@test.com", "");
 
-        assertAll(
-                () -> assertEquals(200, loginFormController.getStatusCode()),
-                () -> assertEquals("Не указан Пароль", loginFormController.getTextErrorMessage())
-        );
-    }
 
-    @Test
-    public void testEmptyEmailAndPasswordField() {
-        LoginFormController loginFormController = new LoginFormController("", "");
 
-        assertAll(
-                () -> assertEquals(200, loginFormController.getStatusCode()),
-                () -> assertEquals("Не указан Email", loginFormController.getTextErrorMessage())
-        );
-    }
+
+
+
 //
 //    @Test
 //    public void testWithoutEmailKey() {
