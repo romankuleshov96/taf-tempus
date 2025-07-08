@@ -29,13 +29,15 @@ public class AllBrandsPage {
 
         for (WebElement brandItemTitle : brandItemTitles) {
             if (brandItemTitle.getText().equals(brandName)) {
-                brandItemTitle.click();
+                    brandItemTitle.click();
+                    break;
             }
         }
 
         return new BrandPage();
     }
 
+    //is displayed
     public boolean isBrandItemTitlesContainText(String brandName) {
         boolean isBrandItemTitlesContainText = false;
 
