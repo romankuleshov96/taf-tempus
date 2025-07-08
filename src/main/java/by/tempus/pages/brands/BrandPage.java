@@ -1,9 +1,16 @@
 package by.tempus.pages.brands;
 
 import by.tempus.driver.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class BrandPage {
+
+    private final By title = By.xpath("//h1[@class=\"h1\"]");
+    private final By productCartNameTitle = By.xpath("//a[@class=\"product-card__name\"]");
 
     protected WebDriver driver;
 
@@ -11,9 +18,27 @@ public class BrandPage {
         driver = Driver.getDriver();
     }
 
-    //тайтл
-    //все айтемы содержат бренд
-    //список фильтровэ
-    //по филтрам применение
-    //клик на конкретный продукт
+    //get text
+    public String getTextTitle() {
+        return driver.findElement(title).getText();
+    }
+
+    //contains
+    public boolean isAllProductsTitlesContainBrandNameText(String brandName) {
+        boolean isAllProductsTitlesContainBrandNameText = true;
+
+        List<WebElement> productsTitles = driver.findElements(productCartNameTitle);
+
+        for (WebElement productTitle : productsTitles) {
+            if (!productTitle.getText().contains(brandName)) {
+                isAllProductsTitlesContainBrandNameText = false;
+                break;
+            }
+        }
+
+        return isAllProductsTitlesContainBrandNameText;
+    }
+
+
+
 }
