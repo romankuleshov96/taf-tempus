@@ -24,9 +24,18 @@ pipeline {
     }
 
     post {
-        always {
-            junit 'target/surefire-reports/*.xml'
-            archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
+            always {
+                sh """
+                    curl -X POST https://slack.com/api/chat.postMessage \\
+                    -H "Authorization: Bearer ${SLACK_TOKEN}" \\
+                    -H "Content-type: application/json" \\
+                    --data '{
+                      "channel": "${SLACK_USER_ID}",
+                      "text": "✅ Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
+                    }'
+                """
+                junit 'target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
+            }
         }
-    }
 }
