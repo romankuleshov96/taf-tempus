@@ -18,27 +18,23 @@ public class BrandPage {
         driver = Driver.getDriver();
     }
 
-    //get text
     public String getTextTitle() {
         return driver.findElement(title).getText();
     }
 
-    //contains
-    public boolean isAllProductsTitlesContainBrandNameText(String brandName) {
-        boolean isAllProductsTitlesContainBrandNameText = true;
+    public boolean areAllProductsTitlesContainBrandNameText(String brandName) {
+        boolean areAllProductsTitlesContainBrandNameText = true;
 
         List<WebElement> productsTitles = driver.findElements(productCartNameTitle);
 
         for (WebElement productTitle : productsTitles) {
             if (!productTitle.getText().contains(brandName)) {
-                isAllProductsTitlesContainBrandNameText = false;
+                areAllProductsTitlesContainBrandNameText = false;
                 break;
             }
         }
 
-        return isAllProductsTitlesContainBrandNameText;
+        return areAllProductsTitlesContainBrandNameText;
     }
-
-
 
 }

@@ -2,6 +2,7 @@ package by.tempus.ui;
 
 import by.tempus.pages.Header;
 import by.tempus.pages.brands.AllBrandsPage;
+import by.tempus.pages.brands.AllBrandsPageLocalizations;
 import by.tempus.pages.brands.BrandPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,13 +27,13 @@ public class AllBrandsPageTest extends BaseTest {
     @Test
     @DisplayName("Verify title text - All Brands page")
     public void testTitleText() {
-        assertEquals("БРЕНДЫ", allBrandsPage.getTextTile());
+        assertEquals(AllBrandsPageLocalizations.ALL_BRANDS_PAGE_TITLE, allBrandsPage.getTextTile());
     }
 
     @Test
     @DisplayName("Verify brand titles list contains specified brand name")
     public void testBrandGridContainsSpecifiedBrandName() {
-        assertTrue(allBrandsPage.isBrandItemTitlesContainText(BRAND_NAME));
+        assertTrue(allBrandsPage.isBrandItemTitleContainText(BRAND_NAME));
     }
 
     @Test
@@ -40,6 +41,6 @@ public class AllBrandsPageTest extends BaseTest {
     public void test() {
         BrandPage brandPage = allBrandsPage.clickSpecifiedBrandItem(BRAND_NAME);
         assertEquals("НАРУЧНЫЕ ЧАСЫ " + BRAND_NAME, brandPage.getTextTitle());
-        assertTrue(brandPage.isAllProductsTitlesContainBrandNameText(BRAND_NAME));
+        assertTrue(brandPage.areAllProductsTitlesContainBrandNameText(BRAND_NAME));
     }
 }

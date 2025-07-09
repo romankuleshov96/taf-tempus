@@ -38,17 +38,17 @@ public class AllBrandsPage {
     }
 
     //is displayed
-    public boolean isBrandItemTitlesContainText(String brandName) {
-        boolean isBrandItemTitlesContainText = false;
+    public boolean isBrandItemTitleContainText(String brandName) {
+        boolean isBrandItemTitleContainText = false;
 
         List<WebElement> brandItemTitles = driver.findElements(brandItemTitle);
 
         for (WebElement brandItemTitle : brandItemTitles) {
             if (brandItemTitle.getText().equals(brandName)) {
-                isBrandItemTitlesContainText = true;
+                isBrandItemTitleContainText = true;
             }
         }
 
-        return isBrandItemTitlesContainText;
+        return isBrandItemTitleContainText;
     }
 }
