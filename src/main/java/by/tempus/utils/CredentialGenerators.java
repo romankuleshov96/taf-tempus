@@ -37,24 +37,6 @@ public class CredentialGenerators {
             localPartOfEmail += requiredSymbols.charAt(ThreadLocalRandom.current().nextInt(requiredSymbols.length()));
         }
 
-//        if (localPartOfEmail.charAt(0) == '.' ||
-//                localPartOfEmail.charAt(0) == '-' ||
-//                localPartOfEmail.charAt(0) == '+' ||
-//                localPartOfEmail.charAt(0) == '_' ||
-//                localPartOfEmail.charAt(0) == '\'') {
-//
-//            localPartOfEmail = localPartOfEmail.substring(1);
-//        }
-//
-//        if (localPartOfEmail.charAt(localPartOfEmail.length() - 1) == '.' ||
-//                localPartOfEmail.charAt(localPartOfEmail.length() - 1) == '-' ||
-//                localPartOfEmail.charAt(localPartOfEmail.length() - 1) == '+' ||
-//                localPartOfEmail.charAt(localPartOfEmail.length() - 1) == '_' ||
-//                localPartOfEmail.charAt(localPartOfEmail.length() - 1) == '\'') {
-//
-//            localPartOfEmail = localPartOfEmail.substring(0, localPartOfEmail.length() - 1);
-//        }
-
         return localPartOfEmail;
     }
 
