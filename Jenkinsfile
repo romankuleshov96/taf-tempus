@@ -10,6 +10,11 @@ pipeline {
         jdk 'jdk24.0.1'
     }
 
+    environment {
+    SLACK_USER_ID = 'U08E82WPX7F'
+    SLACK_TOKEN = credentials('slack-token')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -27,10 +32,10 @@ pipeline {
             always {
                 sh """
                     curl -X POST https://slack.com/api/chat.postMessage \\
-                    -H "Authorization: Bearer xoxb-8485856722691-9157535580039-5nDYWbp35U7fdIS0tfjXQyPh" \\
+                    -H "Authorization: Bearer ${SLACK_TOKEN}" \\
                     -H "Content-type: application/json" \\
                     --data '{
-                      "channel": "U08E82WPX7F",
+                      "channel": "${SLACK_USER_ID}",
                       "text": "✅ Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
                     }'
                 """
