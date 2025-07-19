@@ -1,7 +1,5 @@
-package by.tempus.utils;
+package by.tempus.driver;
 
-import by.tempus.driver.Driver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;

@@ -6,14 +6,14 @@ import by.tempus.pages.login.LoginFormLocalizations;
 import by.tempus.pages.registration.RegistrationForm;
 import by.tempus.pages.reset.password.ResetPasswordForm;
 import by.tempus.utils.CredentialGenerators;
-import by.tempus.utils.Waits;
+import by.tempus.driver.Waits;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LoginFormTest extends BaseTest{
+public class LoginFormTest extends BaseTest {
 
     private String email;
     private String invalidEmail;
@@ -25,7 +25,7 @@ public class LoginFormTest extends BaseTest{
     @BeforeEach
     public void setup() {
         email = CredentialGenerators.getValidEmail();
-        invalidEmail = CredentialGenerators.getInvalidEmailWithoutDomenZonePart();
+        invalidEmail = CredentialGenerators.getInvalidEmailWithoutDomainZonePart();
         password = CredentialGenerators.getValidPassword();
 
         header = new Header();

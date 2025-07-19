@@ -5,7 +5,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CredentialGenerators {
 
-    //email
+    /**
+     * email
+     */
     public static String getValidEmail() {
         String localPart = getLocalPartOfEmail();
         String domenName = getDomenNamePartOfEmail();
@@ -16,7 +18,7 @@ public class CredentialGenerators {
         return email;
     }
 
-    public static String getInvalidEmailWithoutDomenZonePart() {
+    public static String getInvalidEmailWithoutDomainZonePart() {
         String localPart = getLocalPartOfEmail();
         String domenName = getDomenNamePartOfEmail();
 
@@ -54,14 +56,16 @@ public class CredentialGenerators {
         return domenZones.get(ThreadLocalRandom.current().nextInt(domenZones.size()));
     }
 
-    //phone
+    /**
+     * phone
+     */
     public static String getValidBelarusPhoneNumber() {
 
         return getValidPhoneNumber("BY", "MTS", 7);
     }
 
     public static String getInvalidBelarusPhoneNumber() {
-        return getValidPhoneNumber("BY" , "Welcome", 3);
+        return getValidPhoneNumber("BY", "Welcome", 3);
     }
 
     private static String getValidPhoneNumber(String countryCodeValue, String providerName, int phoneLength) {
@@ -93,14 +97,16 @@ public class CredentialGenerators {
     private static String getOwnPhoneNumber(int phoneLength) {
         String ownNumber = "";
 
-        for (int i = 0; i <= phoneLength; i++) {
+        for (int i = 0; i < phoneLength; i++) {
             ownNumber += ThreadLocalRandom.current().nextInt(10);
         }
 
         return ownNumber;
     }
 
-    //password
+    /**
+     * password
+     */
     public static String getValidPassword() {
         String passwordValue = "";
 
@@ -111,7 +117,7 @@ public class CredentialGenerators {
         String requiredNumericSymbols = "0123456789";
         String requiredSpecialSymbols = "!@#$%^&*()_+";
 
-        for (int i = 0; i < ThreadLocalRandom.current().nextInt(MIN_REQUIRED_LENGTH,MAX_REQUIRED_LENGTH); i++) {
+        for (int i = 0; i < ThreadLocalRandom.current().nextInt(MIN_REQUIRED_LENGTH, MAX_REQUIRED_LENGTH); i++) {
             passwordValue += requiredAlphabeticSymbols.charAt(
                     ThreadLocalRandom
                             .current()
@@ -158,9 +164,9 @@ public class CredentialGenerators {
         String requiredAlphabeticSymbols = "abcdefghijklmnopqrstuvwxyz";
 
         String nameValue = String.valueOf(requiredAlphabeticSymbols.charAt(
-                    ThreadLocalRandom
-                            .current()
-                            .nextInt(requiredAlphabeticSymbols.length() - 1)
+                ThreadLocalRandom
+                        .current()
+                        .nextInt(requiredAlphabeticSymbols.length() - 1)
         ));
 
         nameValue = nameValue.toLowerCase();

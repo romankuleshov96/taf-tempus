@@ -6,7 +6,7 @@ import by.tempus.pages.login.LoginFormLocalizations;
 import by.tempus.pages.registration.RegistrationForm;
 import by.tempus.pages.registration.RegistrationFormLocalizations;
 import by.tempus.utils.CredentialGenerators;
-import by.tempus.utils.Waits;
+import by.tempus.driver.Waits;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ public class RegistrationFormTest extends BaseTest {
     @BeforeEach
     public void setup() {
         email = CredentialGenerators.getValidEmail();
-        invalidEmail = CredentialGenerators.getInvalidEmailWithoutDomenZonePart();
+        invalidEmail = CredentialGenerators.getInvalidEmailWithoutDomainZonePart();
         phone = CredentialGenerators.getValidBelarusPhoneNumber();
         invalidPhone = CredentialGenerators.getInvalidBelarusPhoneNumber();
         password = CredentialGenerators.getValidPassword();
