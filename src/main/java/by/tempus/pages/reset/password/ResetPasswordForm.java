@@ -26,7 +26,6 @@ public class ResetPasswordForm extends BaseForm {
         return driver.findElement(validationPopup);
     }
 
-    //get text
     public String getTextRestorePasswordTitle() {
         return driver.findElement(restorePasswordTitle).getText();
     }
@@ -47,17 +46,14 @@ public class ResetPasswordForm extends BaseForm {
         return driver.findElement(validationPopup).getText();
     }
 
-    //click
     public void clickSubmitResetPasswordButton() {
         driver.findElement(submitResetPasswordButton).click();
     }
 
-    //sendKeys
     public void sendKeysEmailField(String emailValue) {
         driver.findElement(emailField).sendKeys(emailValue);
     }
 
-    //isResetPasswordFormDisplayed
     public boolean isResetPasswordFormDisplayed() {
 
         return (

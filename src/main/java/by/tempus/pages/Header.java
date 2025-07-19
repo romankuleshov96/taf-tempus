@@ -1,8 +1,11 @@
 package by.tempus.pages;
 
 import by.tempus.driver.Driver;
+import by.tempus.pages.basket.BasketPage;
+import by.tempus.pages.brands.AllBrandsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Header {
 
@@ -17,21 +20,27 @@ public class Header {
         driver = Driver.getDriver();
     }
 
-    //click
+    public WebElement getBasketItemCounter() {
+        return driver.findElement(BASKET_ITEM_COUNTER);
+    }
+
     public void clickAccountButton() {
         driver.findElement(ACCOUNT_BUTTON).click();
     }
 
-    public void clickCartButton() {
+    public BasketPage clickBasketButton() {
         driver.findElement(BASKET_BUTTON).click();
+
+        return new BasketPage();
     }
 
-     public void clickAllBrandsButton() {
+    public AllBrandsPage clickAllBrandsButton() {
         driver.findElement(ALL_BRANDS_BUTTON).click();
-     }
 
-    //getText
-    public String getCartItemCounterText() {
+        return new AllBrandsPage();
+    }
+
+    public String getBasketItemCounterText() {
         return driver.findElement(BASKET_ITEM_COUNTER).getText();
     }
 }

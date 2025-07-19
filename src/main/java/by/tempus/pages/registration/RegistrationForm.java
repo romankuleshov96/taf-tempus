@@ -46,7 +46,6 @@ public class RegistrationForm extends BaseForm {
         return driver.findElement(validationPopup);
     }
 
-    //get text
     public String getTextNameFieldPlaceholder() {
         return driver.findElement(nameFieldPlaceholder).getText();
     }
@@ -103,7 +102,6 @@ public class RegistrationForm extends BaseForm {
         return driver.findElement(submitRegistrationButton).getText();
     }
 
-    //click
     public void clickAgreementCheckBox() {
         driver.findElement(agreementCheckBox).click();
     }
@@ -112,7 +110,6 @@ public class RegistrationForm extends BaseForm {
         driver.findElement(submitRegistrationButton).click();
     }
 
-    //sendKeys
     public void sendKeysNameField(String nameValue) {
         driver.findElement(nameField).sendKeys(nameValue);
     }
@@ -133,7 +130,6 @@ public class RegistrationForm extends BaseForm {
         driver.findElement(repeatPasswordField).sendKeys(repeatPasswordValue);
     }
 
-    //isLoginFormDisplayed
     public boolean isRegistrationFormDisplayed() {
 
         return (

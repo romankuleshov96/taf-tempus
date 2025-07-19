@@ -4,6 +4,7 @@ import by.tempus.pages.Header;
 import by.tempus.pages.brands.AllBrandsPage;
 import by.tempus.pages.brands.AllBrandsPageLocalizations;
 import by.tempus.pages.brands.BrandPage;
+import by.tempus.pages.brands.BrandPageLocalizations;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ public class AllBrandsPageTest extends BaseTest {
     @DisplayName("Verify redirection to specified brand page")
     public void test() {
         BrandPage brandPage = allBrandsPage.clickSpecifiedBrandItem(BRAND_NAME);
-        assertEquals("НАРУЧНЫЕ ЧАСЫ " + BRAND_NAME, brandPage.getTextTitle());
+        assertEquals(BrandPageLocalizations.BRANDS_ITEM_TITLE + BRAND_NAME, brandPage.getTextTitle());
         assertTrue(brandPage.areAllProductsTitlesContainBrandNameText(BRAND_NAME));
     }
 }

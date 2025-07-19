@@ -31,7 +31,6 @@ public class LoginForm extends BaseForm {
         return driver.findElement(errorPopup);
     }
 
-    //get text
     public String getTextEmailFieldPlaceholder() {
         return driver.findElement(emailFieldPlaceholder).getText();
     }
@@ -60,7 +59,6 @@ public class LoginForm extends BaseForm {
         return driver.findElement(errorPopup).getText();
     }
 
-    //click
     public void clickSubmitButton() {
         driver.findElement(submitLoginButton).click();
     }
@@ -71,7 +69,6 @@ public class LoginForm extends BaseForm {
         return new ResetPasswordForm();
     }
 
-    //sendKeys
     public void sendKeysEmailField(String emailValue) {
         driver.findElement(emailField).sendKeys(emailValue);
     }
@@ -80,7 +77,6 @@ public class LoginForm extends BaseForm {
         driver.findElement(passwordField).sendKeys(passwordValue);
     }
 
-    //isLoginFormDisplayed
     public boolean isLoginFormDisplayed() {
         return (
                 driver.findElement(loginTitle).isDisplayed() &&

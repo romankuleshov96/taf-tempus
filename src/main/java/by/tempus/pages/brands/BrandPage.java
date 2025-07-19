@@ -1,6 +1,7 @@
 package by.tempus.pages.brands;
 
 import by.tempus.driver.Driver;
+import by.tempus.pages.product.ProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,6 +36,20 @@ public class BrandPage {
         }
 
         return areAllProductsTitlesContainBrandNameText;
+    }
+
+    public ProductPage clickSpecifiedModelItem(String modelName) {
+
+        List<WebElement> productsTitles = driver.findElements(productCartNameTitle);
+
+        for (WebElement productTitle : productsTitles) {
+            if (productTitle.getText().contains(modelName)) {
+                productTitle.click();
+                break;
+            }
+        }
+
+        return new ProductPage();
     }
 
 }

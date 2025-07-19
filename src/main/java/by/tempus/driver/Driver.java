@@ -10,7 +10,6 @@ public class Driver {
     private static WebDriver driver;
 
     public Driver() {
-
     }
 
     public static WebDriver getDriver() {

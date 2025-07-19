@@ -18,12 +18,10 @@ public class AllBrandsPage {
         driver = Driver.getDriver();
     }
 
-    //get text
     public String getTextTile() {
         return driver.findElement(title).getText();
     }
 
-    //click
     public BrandPage clickSpecifiedBrandItem(String brandName) {
         List<WebElement> brandItemTitles = driver.findElements(brandItemTitle);
 
@@ -37,7 +35,6 @@ public class AllBrandsPage {
         return new BrandPage();
     }
 
-    //is displayed
     public boolean isBrandItemTitleContainText(String brandName) {
         boolean isBrandItemTitleContainText = false;
 

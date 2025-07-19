@@ -18,11 +18,10 @@ public class BaseForm {
         driver = Driver.getDriver();
     }
 
-        public WebElement getLoginTitle() {
+    public WebElement getLoginTitle() {
         return driver.findElement(loginTitle);
     }
 
-    //get text
     public String getTextLoginTitle() {
         return driver.findElement(loginTitle).getText();
     }
@@ -31,7 +30,6 @@ public class BaseForm {
         return driver.findElement(registrationTitle).getText();
     }
 
-    //click
     public LoginForm clickLoginTitle() {
         driver.findElement(loginTitle).click();
 
