@@ -25,6 +25,14 @@ pipeline {
             steps {
                 sh 'mvn clean test'
             }
+            post {
+                always {
+                    allure includeProperties:
+                     false,
+                     jdk: 'jdk24.0.1',
+                     results: [[path: 'target/allure-results']]
+                }
+            }
         }
     }
 
@@ -36,10 +44,9 @@ pipeline {
                     -H "Content-type: application/json" \\
                     --data '{
                       "channel": "${SLACK_USER_ID}",
-                      "text": "✅ Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
+                      "text": "Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
                     }'
                 """
-                junit 'target/surefire-reports/*.xml'
                 archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
             }
         }
