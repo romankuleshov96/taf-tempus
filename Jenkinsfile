@@ -44,11 +44,9 @@ pipeline {
                     -H "Content-type: application/json" \\
                     --data '{
                       "channel": "${SLACK_USER_ID}",
-                      "text": "✅ Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
+                      "text": "Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
                     }'
                 """
-                //прописать что добавить в слак
-//                 junit 'target/allure-report/*.xml'
                 archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
             }
         }
