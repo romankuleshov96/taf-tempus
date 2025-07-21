@@ -30,6 +30,14 @@ pipeline {
 
     post {
             always {
+             post {
+                            always {
+                                allure includeProperties:
+                                 false,
+                                 jdk: 'jdk24.0.1',
+                                 results: [[path: 'build/allure-results']]
+                            }
+                        }
                 sh """
                     curl -X POST https://slack.com/api/chat.postMessage \\
                     -H "Authorization: Bearer ${SLACK_TOKEN}" \\
@@ -39,7 +47,8 @@ pipeline {
                       "text": "✅ Jenkins: Сборка ${BUILD_URL} завершена со статусом: ${currentBuild.currentResult}"
                     }'
                 """
-                junit 'target/surefire-reports/*.xml'
+                //прописать что добавить в слак
+//                 junit 'target/allure-report/*.xml'
                 archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
             }
         }
