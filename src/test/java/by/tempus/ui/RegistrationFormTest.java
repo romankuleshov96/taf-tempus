@@ -64,6 +64,7 @@ public class RegistrationFormTest extends BaseTest {
     @DisplayName("Verify validation messages for all empty fields")
     public void testAllEmptyFieldsValidationText() {
         registrationForm.clickRegistrationButton();
+        registrationForm.scrollToAgreementCheckBoxValidationMessage();
 
         assertAll(
                 () -> assertEquals(RegistrationFormLocalizations.NAME_FIELD_VALIDATION_MESSAGE, registrationForm.getTextNameFieldValidationMessage()),

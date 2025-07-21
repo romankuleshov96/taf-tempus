@@ -3,6 +3,7 @@ package by.tempus.pages.registration;
 import by.tempus.driver.Driver;
 import by.tempus.pages.BaseForm;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -29,7 +30,7 @@ public class RegistrationForm extends BaseForm {
     private final By repeatPasswordFieldValidationMessage = By.xpath("//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]");
 
     private final By agreementCheckBox = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"form-input is-checkbox is-required checkbox-input\"]");
-    private final By agreementCheckBoxValidationMessage = By.xpath("//span[@class=\"form-input is-checkbox is-required checkbox-input is-error\"]//span[@class=\"form-input__error-message\"]");
+    private final By agreementCheckBoxValidationMessage = By.xpath("//div[@class=\"form__agreement\"]//span[@class=\"form-input__error-message\"]");
     private final By agreementText = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]");
 
     private final By submitRegistrationButton = By.xpath("//form[@class=\"form registration__form js-validate-form\"]//button[@type=\"submit\"]");
@@ -44,6 +45,12 @@ public class RegistrationForm extends BaseForm {
 
     public WebElement getValidationPopup() {
         return driver.findElement(validationPopup);
+    }
+
+    public void scrollToAgreementCheckBoxValidationMessage() {
+        WebElement showAllBrandsButton = driver.findElement(agreementCheckBoxValidationMessage);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", showAllBrandsButton);
+        showAllBrandsButton.click();
     }
 
     public String getTextNameFieldPlaceholder() {
