@@ -25,19 +25,19 @@ pipeline {
             steps {
                 sh 'mvn clean test'
             }
+            post {
+                always {
+                    allure includeProperties:
+                     false,
+                     jdk: 'jdk24.0.1',
+                     results: [[path: 'target/allure-results']]
+                }
+            }
         }
     }
 
     post {
             always {
-             post {
-                            always {
-                                allure includeProperties:
-                                 false,
-                                 jdk: 'jdk24.0.1',
-                                 results: [[path: 'build/allure-results']]
-                            }
-                        }
                 sh """
                     curl -X POST https://slack.com/api/chat.postMessage \\
                     -H "Authorization: Bearer ${SLACK_TOKEN}" \\
