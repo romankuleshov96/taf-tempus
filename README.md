@@ -50,6 +50,7 @@ ___
 ✅ Восстановление пароля<br />
 
 ---
+
 ## <img width="4%" style="vertical-align:middle" title="Jenkins" src="https://www.svgrepo.com/show/353929/jenkins.svg"> Запуск автотестов в Jenkins
 
 Для автоматического запуска тестов, в Jenkins реализована job'a, использующаяя cron expression - запуск каждый будний день в 9 утра.
