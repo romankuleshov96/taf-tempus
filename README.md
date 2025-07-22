@@ -38,15 +38,49 @@ ___
 ### Web-тесты
 ✅ Тестирование формы 'Входа' - авторизация по почте и паролю  <br />
 ✅ Тестирование формы 'Регистрации' <br />
-✅ Тестирование формы 'Востановления пароля'<br />
+✅ Тестирование формы 'Восстановления пароля'<br />
 ✅ Проверка страницы 'Бренды' - выбор бренда - дальнейшее отображение продуктов определенного бренда<br />
 ✅ Проверка выбора определенного Продукта (Бренд, название модели) <br />
 ✅ Проверка функциональности добавления продукта в корзину <br />
 
 ### Api-тесты
-✅ Проверка статус кода и валидационных сообщений в response для седующих запросов: <br />
-✅ Аунтефикация <br />
+✅ Проверка статус кода и валидационных сообщений в response для следующих запросов: <br />
+✅ Аутентификация <br />
 ✅ Регистрация пользователя <br />
-✅ Востановление пароля<br />
+✅ Восстановление пароля<br />
 
 ---
+
+## <img width="4%" style="vertical-align:middle" title="Jenkins" src="https://www.svgrepo.com/show/353929/jenkins.svg"> Запуск автотестов в Jenkins
+
+Для автоматического запуска тестов, в Jenkins реализована job'a, использующаяя cron expression - запуск каждый будний день в 9 утра.
+
+Реализована интеграция с Allure report, внутри Jenkins.
+
+<img width="140%" style="vertical-align:middle" title="Slack" src="https://i.postimg.cc/fbrHvb0M/2025-07-22-20-32-39.png">
+
+---
+
+## <img width="4%" style="vertical-align:middle" title="Allure Report" src="https://avatars.githubusercontent.com/u/5879127?s=200&v=4"> Пример Allure-отчета
+
+### <a target="_blank" href="http://localhost:8080/job/Tempus.by/3/allure/">Пример</a> отчёта выполнения одного из автотестов
+
+<img width="140%" style="vertical-align:middle" title="Allure Report" src="https://i.postimg.cc/Jz83fjQ0/2025-07-22-19-01-39.png">
+
+<img width="140%" style="vertical-align:middle" title="Allure Report" src="https://i.postimg.cc/FKWjk8Xk/2025-07-22-19-01-24.png">
+
+Содержит в себе:
+- Информацию о количестве запущенный тестов
+- Время выполнения
+- Статус
+- Логи браузерной консоли
+- Процентное соотношение успешно выполненных тестов
+
+___
+
+## <img width="4%" style="vertical-align:middle" title="Slack" src="https://www.svgrepo.com/show/303320/slack-new-logo-logo.svg"> Уведомления в Slack
+
+### После завершения сборки, бот, созданный в <code>Slack</code>, автоматически обрабатывает и отправляет сообщение с результатом
+
+<img width="140%" style="vertical-align:middle" title="Slack" src="https://i.postimg.cc/QCMwkRFL/2025-07-22-19-06-42.png">
+<img width="140%" style="vertical-align:middle" title="Slack" src="https://i.postimg.cc/wBTPVPfQ/2025-07-22-20-31-10.png">
